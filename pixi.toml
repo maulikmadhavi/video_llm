@@ -1,0 +1,16 @@
+[project]
+authors = ["Maulik Madhavi <maulik.madhavi@gmail.com>"]
+channels = ["conda-forge"]
+name = "video_llm"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = "==3.12.9"
+pip = ">=25.0.1,<26"
+
+[pypi-dependencies]
+flask = ">=3.1.0, <4"
+numpy = ">=2.2.4, <3"
