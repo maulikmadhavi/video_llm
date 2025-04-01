@@ -1,0 +1,89 @@
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.video-panel {
+    border: 1px solid #ccc;
+    padding: 5px;
+    position: relative;
+}
+
+video {
+    width: 100%;
+    height: auto;
+}
+
+.timeline {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.dash {
+    width: 10px;
+    height: 20px;
+    background-color: #ccc;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: background-color 0.2s, border 0.2s;
+}
+
+.dash:hover {
+    background-color: #888;
+}
+
+.dash.active {
+    border: 2px solid red;
+}
+
+.question-form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.question-form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.question-form {
+    flex: 1;
+}
+
+button {
+    padding: 8px 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.question-form button {
+    background-color: #007bff;
+    margin-top: 10px;
+}
+
+.question-form button:hover {
+    background-color: #0056b3;
+}
+
+.reset-form button {
+    background-color: #6c757d;
+}
+
+.reset-form button:hover {
+    background-color: #545b62;
+}

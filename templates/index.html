@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Grid with Timeline</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="form-container">
+        <form class="question-form" action="/" method="post">
+            <label for="question">Your Question:</label>
+            <input type="text" id="question" name="question" required>
+            <button type="submit" name="action" value="submit">Submit</button>
+        </form>
+        <form class="reset-form" action="/" method="post">
+            <button type="submit" name="action" value="reset">Reset</button>
+        </form>
+    </div>
+
+    <div class="video-grid">
+        {% for video in videos %}
+        {% set video_index = loop.index %}
+        <div class="video-panel">
+            <video id="video{{ video_index }}" controls preload="auto" poster="{{ video.poster }}">
+                <source src="{{ video.src }}" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+            <!-- Timeline with 30 dashes representing 10-second chunks -->
+            <div class="timeline">
+                {% for chunk in range(30) %}
+                <div class="dash {% if video.chunks[chunk] %}active{% endif %}" 
+                     onclick="jumpToChunk({{ video_index }}, {{ chunk }})" 
+                     title="Chunk {{ chunk+1 }} ({{ chunk*10 }} sec)"></div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
