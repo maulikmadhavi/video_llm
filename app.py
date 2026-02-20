@@ -30,8 +30,8 @@ def index():
 
             videos.append(
                 {
-                    "src": "/static/data/sample_5min.mp4",
-                    "poster": "/static/data/sample_5min.jpg",
+                    "src": "/static/data/BigBuckBunny.mp4",
+                    "poster": "/static/data/BigBuckBunny.jpg",
                     "chunks": video_vector,
                 }
             )
@@ -40,11 +40,11 @@ def index():
         binary_vector = [0 for _ in range(30)]
         videos.extend(
             {
-                "src": "/static/data/sample_5min.mp4",
-                "poster": "/static/data/sample_5min.jpg",
+                "src": "/static/data/BigBuckBunny.mp4",
+                "poster": "/static/data/BigBuckBunny.jpg",
                 "chunks": binary_vector,
             }
-            for _ in range(6)
+            for _ in range(8)
         )
 
     return render_template("index.html", videos=videos)

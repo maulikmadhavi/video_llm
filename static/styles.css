@@ -1,6 +1,6 @@
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: 10px;
 }
 
@@ -17,8 +17,7 @@ video {
 
 .timeline {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));
-    gap: 4px;
+    grid-template-columns: repeat(auto-fit, minmax(10px, 1fr));    
     width: 100%;
     margin-top: 4px;
 }

@@ -7,16 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="form-container">
-        <form class="question-form" action="/" method="post">
-            <label for="question">Your Question:</label>
-            <input type="text" id="question" name="question" required>
-            <button type="submit" name="action" value="submit">Submit</button>
-        </form>
-        <form class="reset-form" action="/" method="post">
-            <button type="submit" name="action" value="reset">Reset</button>
-        </form>
-    </div>
+
 
     <div class="video-grid">
         {% for video in videos %}
@@ -38,6 +29,17 @@
         {% endfor %}
     </div>
 
+        <div class="form-container">
+        <form class="question-form" action="/" method="post">
+            <label for="question">Your Question:</label>
+            <input type="text" id="question" name="question" required>
+            <button type="submit" name="action" value="submit">Submit</button>
+        </form>
+        <form class="reset-form" action="/" method="post">
+            <button type="submit" name="action" value="reset">Reset</button>
+        </form>
+    </div>
+    
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 </html>
