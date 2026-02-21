@@ -13,7 +13,9 @@
         {% for video in videos %}
         {% set video_index = loop.index %}
         <div class="video-panel">
-            <video id="video{{ video_index }}" controls preload="auto" poster="{{ video.poster }}">
+            <!-- Issue 4: Use preload="none" to prevent downloading all videos on page load -->
+            <!-- Issue 3: Poster image is not committed; skipping poster to avoid 404 -->
+            <video id="video{{ video_index }}" controls preload="metadata">
                 <source src="{{ video.src }}" type="video/mp4">
                 Your browser does not support HTML5 video.
             </video>
