@@ -3,6 +3,8 @@ from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
+NUM_VIDEOS = 6
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -14,19 +16,20 @@ def index():
             # Reset all binary vectors to zeros
             binary_vector = [0 for _ in range(30)]
         else:  # submit action
-            question = request.form["question"]
+            question = request.form.get("question", "")
+
             print(f"Received question: {question}")
             # Generate random binary vectors
             binary_vector = None  # Will be generated per video
 
         # Generate video list
-        for _ in range(6):
+        for _ in range(NUM_VIDEOS):
             # For submit action, generate new random vector for each video
             # For reset action, use the zero vector for all videos
             if binary_vector is None:
                 video_vector = [random.choice([0, 1]) for _ in range(30)]
             else:
-                video_vector = binary_vector
+                video_vector = binary_vector[:]
 
             videos.append(
                 {
@@ -42,13 +45,13 @@ def index():
             {
                 "src": "/static/data/BigBuckBunny.mp4",
                 "poster": "/static/data/BigBuckBunny.jpg",
-                "chunks": binary_vector,
+                "chunks": binary_vector[:],
             }
-            for _ in range(8)
+            for _ in range(NUM_VIDEOS)
         )
 
     return render_template("index.html", videos=videos)
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
