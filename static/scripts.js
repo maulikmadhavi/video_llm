@@ -1,3 +1,12 @@
+// On page load, seek each video to its first frame to show a thumbnail.
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('video').forEach(function (video) {
+        video.addEventListener('loadedmetadata', function () {
+            video.currentTime = 0.001;
+        }, { once: true });
+    });
+});
+
 /**
  * Jump to a specified chunk in the video and capture the preview frame.
  * @param {number} videoId - The ID number of the video panel.
@@ -12,18 +21,18 @@ function jumpToChunk(videoId, chunk) {
 
         // Listen for the 'seeked' event to capture the frame.
         video.addEventListener('seeked', function captureFrame() {
+            if (!video.videoWidth || !video.videoHeight) {
+                return;
+            }
+
             var canvas = document.createElement('canvas');
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             var ctx = canvas.getContext('2d');
             ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-            
-            // Update the poster attribute with the captured frame.
-            var dataURL = canvas.toDataURL();
-            video.setAttribute('poster', dataURL);
-            
-            // Remove the event listener after capturing the frame.
-            video.removeEventListener('seeked', captureFrame);
-        });
+
+
+            // (Poster was permanently lost after first click; this preserves it for the session)
+        }, { once: true });
     }
 }
